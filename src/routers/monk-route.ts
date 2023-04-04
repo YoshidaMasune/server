@@ -1,8 +1,19 @@
-import { Router } from "express";
-import { createOne } from "../controllers/monk-controller";
+import { Router } from 'express';
+import {
+  createOne,
+  deleteOne,
+  getAll,
+  updateOne,
+} from '../controllers/monk-controller';
 
 const router = Router();
 
-router.post('/', createOne)
+router.post('/', createOne);
 
-export default router
+router.get('/', getAll);
+
+router.put('/:id', updateOne);
+
+router.delete('/:id', deleteOne);
+
+export default router;

@@ -3,6 +3,7 @@ import { nimone_api } from "./app";
 import work_route from './routers/work-route';
 import user_route from './routers/user-route';
 import monk_route from './routers/monk-route';
+import auth_router from './routers/auth-route'
 import { RoutesApp } from "./myInterface.interface";
 
 const routes: Array<RoutesApp> = [
@@ -17,6 +18,10 @@ const routes: Array<RoutesApp> = [
     {
         path: '/api/monkes',
         route: monk_route
+    },
+    {
+        path: '/api/auth',
+        route: auth_router
     }
 ]
 

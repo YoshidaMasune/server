@@ -1,6 +1,7 @@
 import express, { Application, Router, urlencoded } from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cors from 'cors'
 
 // import Routers
 import { RoutesApp } from './myInterface.interface';
@@ -17,6 +18,7 @@ export const nimone_api = function (routes: Array<RoutesApp>, port: number) {
   // set middlewares
   app.use(urlencoded({ extended: false }));
   app.use(express.json());
+  app.use(cors())
 
   // set routes
 

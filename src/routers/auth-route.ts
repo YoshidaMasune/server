@@ -4,7 +4,13 @@ import bcript from 'bcrypt'
 
 const router = Router();
 
-router.post('/registor', async (req, res,) => {
-    // let encryptedPassword = await bcript.hash(password, 10);
-    // const token = jwt.sign(id: admin._id, )
+router.post('/login', async (req, res,) => {
+
+    console.log(req.body)
+    res.json({
+        login: true,
+        token: 'tuyfdfodcvo345__dkfjbe49fbjkdcladfglLLIUT@$_('
+    })
 })
+
+export default router;

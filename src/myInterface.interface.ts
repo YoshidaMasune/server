@@ -1,4 +1,4 @@
-import { Request } from "express";
+import { Request, Router } from "express";
 
 export interface UserInterface {
     first_name: string,
@@ -24,7 +24,7 @@ export interface AddressInterface {
 }
 
 export interface AddressInterface {
-    
+
 }
 export interface WorkRequest extends Request {
     body: {
@@ -32,4 +32,11 @@ export interface WorkRequest extends Request {
         work: WorkInterface,
         address?: AddressInterface
     }
+}
+
+// FOR ROUTERS
+
+export interface RoutesApp {
+    path: string,
+    route: Router
 }

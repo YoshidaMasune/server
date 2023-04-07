@@ -1,10 +1,10 @@
 import { fill_NULL_request_body } from './../middlewares/fillRequest';
 import { Router } from "express"
-import { createNewOne, deleteOne, getAll, getById, updateOne } from "../controllers/work-controller";
+import { createNewOne, deleteOne, getWorkAll, getById, updateOne } from "../controllers/work-controller";
 
 const router = Router();
 
-router.get('/', getAll);
+router.get('/', getWorkAll);
 
 router.get('/:id', getById)
 

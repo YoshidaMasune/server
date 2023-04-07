@@ -5,7 +5,6 @@ import {
   getAll,
   updateOne,
 } from '../controllers/monk-controller';
-
 const router = Router();
 
 router.post('/', createOne);

@@ -1,9 +1,12 @@
-import {Router} from 'express'
+import { Router } from 'express'
+import * as nimoneController from '../controllers/nimone';
 
 const router = Router();
 
-router.post('/');
+router.post('/', nimoneController.newNimone);
 
-router.get('/');
+router.get('/', nimoneController.readAll);
+
+router.get('/:id', nimoneController.readOne);
 
 export default router;

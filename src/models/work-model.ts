@@ -1,4 +1,4 @@
-import {Schema, model} from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const workSchema = new Schema({
     work_name: {
@@ -16,7 +16,7 @@ const workSchema = new Schema({
     date_time: {
         type: Date,
         required: true,
-        default: new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate()+1)
+        default: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 1)
     },
     phone: {
         type: String,
@@ -32,8 +32,8 @@ const workSchema = new Schema({
     },
     address: {
         type: Schema.Types.ObjectId,
-        ref: "user"
+        ref: "address"
     }
-},{timestamps: true})
+}, { timestamps: true })
 
 export const Work = model('work', workSchema)

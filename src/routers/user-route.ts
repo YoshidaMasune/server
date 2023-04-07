@@ -1,9 +1,12 @@
 import { Router } from "express";
+import * as UserController from "../controllers/user-controller";
 
 const router = Router();
 
-router.get('/users/:id', (req, res) => {
-    res.send('test api at users')
-})
+router.get('/:id', UserController.getUserOne)
+
+router.get('/', UserController.getUserAll);
+
+router.put('/', UserController.updateUserOne)
 
 export default router

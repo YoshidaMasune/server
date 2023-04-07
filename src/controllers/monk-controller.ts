@@ -2,6 +2,12 @@ import { validRequestFeildWithArray } from './../middlewares/fillRequest';
 import { Response, Request, NextFunction } from 'express';
 import { Monk } from '../models/monk-model';
 
+/**=====================================================================================================================
+ * 
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 export const createOne = async (
   req: Request,
   res: Response,
@@ -36,7 +42,7 @@ export const createOne = async (
   }
 };
 
-/**
+/**====================================================================================================================
  * Update
  * @param req
  * @param res
@@ -61,8 +67,9 @@ export const updateOne = async (
     });
 };
 
-/**
- * GET ALL DATA FROM MONK
+/**====================================================================================================================
+ * 
+ * GET ALL DATA FROM MOnk
  * @param req
  * @param res
  */
@@ -77,8 +84,11 @@ export const getAll = async (req: Request, res: Response) => {
   }
 };
 
+
 /**
- *
+ * 
+ * @param req 
+ * @param res 
  */
 
 export const deleteOne = async (req: Request, res: Response) => {

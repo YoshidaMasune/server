@@ -4,6 +4,13 @@ import { Work } from '../models/work-model';
 import { WorkRequest } from '../myInterface.interface';
 import { Address } from '../models/address-model';
 
+
+/**=====================================================================================================================
+ * 
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 export const createNewOne = async (
   req: WorkRequest,
   res: Response,
@@ -15,7 +22,12 @@ export const createNewOne = async (
     const { user, work } = req.body;
     const { address } = req.body;
 
+    // const user_doc = new User;
+    // const address_doc = new Address;
+    // const work_doc = new Work
+
     if (Object.keys(address!).length == 0 || address == undefined) {
+
       const user_doc = await User.create({
         first_name: user.first_name,
         last_name: user.last_name,
@@ -45,10 +57,20 @@ export const createNewOne = async (
           res.status(500).send('error at server on save datas');
         });
     } else {
+
+      // =======
       const user_doc = await User.create({
         first_name: user.first_name,
         last_name: user.last_name,
         phone: user.phone,
+      });
+
+      const address_doc = await Address.create({
+        house: address.house,
+        sub_disrtrict: address.sub_district,
+        district: address.district,
+        province: address.province,
+        user: user_doc.id,
       });
 
       const work_doc = await Work.create({
@@ -58,15 +80,10 @@ export const createNewOne = async (
         date_time: new Date().toString(),
         user: user_doc._id,
         phone: user_doc.phone,
+        address: address_doc._id
       });
 
-      const address_doc = await Address.create({
-        house: address!.house,
-        sub_disrtrict: address!.sub_district,
-        district: address!.district,
-        province: address!.province,
-        user: user_doc.id,
-      });
+      console.log(address_doc)
 
       work_doc
         .save()
@@ -86,6 +103,17 @@ export const createNewOne = async (
     console.log(error);
   }
 };
+
+
+
+
+
+/**=====================================================================================================================
+ * 
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 
 export const deleteOne = async function (
   req: Request,
@@ -108,6 +136,14 @@ export const deleteOne = async function (
   }
 };
 
+
+/**===============================================================================================================
+ * 
+ * @param req 
+ * @param res 
+ * @param next 
+ */
+
 export const updateOne = (req: Request, res: Response, next: NextFunction) => {
   try {
     Work.updateOne({ _id: req.params.id }, { ...req.body.work })
@@ -125,29 +161,37 @@ export const updateOne = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export const getAll = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  try {
-    const datas = await Work.find().populate('user').populate('address').exec();
 
+
+/**===================================================================================================================
+ * 
+ * @param req 
+ * @param res 
+ */
+export const getWorkAll = async (req: Request, res: Response) => {
+  try {
+    const datas = await Work.find().populate('user').populate('address')
     res.status(200).json(datas);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 };
 
+
+/**====================================================================================================================
+ * 
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 export const getById = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const data = await Work.findById({ _id: req.params.id })
-      .populate('user')
-      .populate('address')
-      .exec();
-
+    const id = req.params.id
+    const data = await Work.findById(id).exec();
     if (data == null) {
       res.send('id not founde');
     }

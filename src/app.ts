@@ -1,29 +1,26 @@
-import express, { Router, urlencoded } from 'express';
+import express, { Application, Router, urlencoded } from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
 // import Routers
-import work_route from './routers/work-route';
-import user_route from './routers/user-route';
-import monk_route from './routers/monk-route';
+import { RoutesApp } from './myInterface.interface';
 
-export const nimone_api = function () {
-  const app = express();
+export const nimone_api = function (routes: Array<RoutesApp>, port: number) {
+
+  const app = express()
   dotenv.config();
 
   const MONGO_URI =
     'mongodb+srv://devmonk:devmonk@cluster0.rth3y9d.mongodb.net/?retryWrites=true&w=majority';
-  const PORT = 4000;
+  const PORT = port;
 
   // set middlewares
   app.use(urlencoded({ extended: false }));
   app.use(express.json());
 
   // set routes
-  app.use('/api/users', user_route);
-  app.use('/api/workes', work_route);
-  app.use('/api/monkes', monk_route);
-  // app.use('/auth');
+
+  routes.forEach(route => app.use(route.path, route.route))
 
   // connect mongoose
   mongoose

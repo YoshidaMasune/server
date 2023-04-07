@@ -1,3 +1,23 @@
-import { nimone_api} from "./app";
+import express from 'express'
+import { nimone_api } from "./app";
+import work_route from './routers/work-route';
+import user_route from './routers/user-route';
+import monk_route from './routers/monk-route';
+import { RoutesApp } from "./myInterface.interface";
 
-nimone_api()
+const routes: Array<RoutesApp> = [
+    {
+        path: '/api/users',
+        route: user_route
+    },
+    {
+        path: '/api/workes',
+        route: work_route
+    },
+    {
+        path: '/api/monkes',
+        route: monk_route
+    }
+]
+
+nimone_api(routes, 4000)

@@ -24,7 +24,7 @@ export const nimone_api = function (routes: Array<RoutesApp>, port: number) {
 
   routes.forEach(route => app.use(route.path, route.route))
 
-  // connect mongoose
+  // connect mongoose2
   mongoose
     .connect(MONGO_URI)
 

@@ -5,14 +5,15 @@ import {
   getAll,
   updateOne,
 } from '../controllers/monk-controller';
+import { authToken } from '../middlewares/auth';
 const router = Router();
 
-router.post('/', createOne);
+router.post('/', authToken, createOne);
 
 router.get('/', getAll);
 
-router.put('/:id', updateOne);
+router.put('/:id', authToken, updateOne);
 
-router.delete('/:id', deleteOne);
+router.delete('/:id', authToken, deleteOne);
 
 export default router;
